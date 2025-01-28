@@ -1,0 +1,22 @@
+document.getElementById('directionsForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const fromLocation = document.getElementById('fromLocation').value.trim();
+    const toLocation = document.getElementById('toLocation').value.trim();
+    const travelMode = document.getElementById('travelMode').value;
+
+    if (fromLocation && toLocation) {
+        // Generate Google Maps Directions URL
+        const directionsUrl = https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(fromLocation)}&destination=${encodeURIComponent(toLocation)}&travelmode=${travelMode};
+        
+        // Show the directions link
+        document.getElementById('directionsLink').style.display = 'block';
+        document.getElementById('mapLink').href = directionsUrl;
+        document.getElementById('mapLink').innerText = Get directions from ${fromLocation} to ${toLocation} on Google Maps;
+        document.getElementById('errorMessage').textContent = '';
+    } else {
+        // Show an error message if any field is empty
+        document.getElementById('errorMessage').textContent = 'Please enter both "From" and "To" locations.';
+        document.getElementById('directionsLink').style.display = 'none';
+    }
+});
